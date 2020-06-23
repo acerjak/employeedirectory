@@ -10,9 +10,7 @@ class App extends Component {
 //setting this.state.employees to the employees json array
   state = {
     first_name: '',
-    searchName: '',
     employees,
-    originalEmployees: '',
     filtered: []
   }
 
@@ -20,17 +18,17 @@ class App extends Component {
 handleInputChange = event => {
   console.log(event.target.value)
   const inputValue = event.target.value
-  this.setState({ input: inputValue})
+  this.setState({ first_name: inputValue})
   this.filterNames(inputValue)
 }
 
 //handle filtering name
 filterNames (inputValue) {
   const { employees } = this.state
-  this.setState({
-    filtered: employees.filter(employee => 
-      employee.first_name ? employee.first_name.includes(inputValue) : null)
-  })
+  let filtered = employees.filter(employee => 
+    employee.first_name ? employee.first_name.includes(inputValue) : null)
+  this.setState({ filtered })
+  console.log(filtered)
 }
 
 //handle filter by name
