@@ -31,6 +31,7 @@ filterNames (inputValue) {
   console.log(filtered)
 }
 
+
 //handle filter by name
 // handleFilter = event => {
 //   event.preventDefault()
@@ -78,7 +79,17 @@ handleSort = event => {
           </tr>
         </thead>
         <tbody>        
-        {this.state.employees.map(employee => (
+        {this.state.filtered[0] ? this.state.filtered.map(employee => (
+          <EmployeeDetails
+            id={employee.id}
+            key={employee.id}
+            first_name={employee.first_name}
+            last_name={employee.last_name}
+            email={employee.email}
+            job_title={employee.job_title}
+            department={employee.department}
+            phone={employee.phone}/>
+        ))  : this.state.employees.map(employee => (
           <EmployeeDetails
             id={employee.id}
             key={employee.id}
