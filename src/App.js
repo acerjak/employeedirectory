@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 import './App.css'
 import employees from './employees.json'
-import EmployeeTable from './components/EmployeeTable'
 import SearchForm from './components/SearchForm'
 import EmpJumbotron from './components/EmpJumbotron'
-
+import EmployeeDetails from './components/EmployeeDetails'
+import Table from 'react-bootstrap/Table'
 
 class App extends Component {
 //setting this.state.employees to the employees json array
@@ -41,24 +41,37 @@ handleInputChange = event => {
   render(){
     return (
       <>
-        <EmpJumbotron></EmpJumbotron>
+      <EmpJumbotron></EmpJumbotron>
         <SearchForm
         onChange={this.handleInputChange}
-        value={this.state.firstName}
-        ></SearchForm>
-        {this.state.employees.map(employee => (
-          <EmployeeTable
-          id={employee.id}
-          key={employee.id}
-          first_name={employee.first_name}
-          last_name={employee.last_name}
-          email={employee.email}
-          job_title={employee.job_title}
-          department={employee.department}
-          phone={employee.phone}
-          />
-        ))}
-        
+        value={this.state.firstName}>
+        </SearchForm>
+        <hr></hr>
+          <Table striped bordered hover variant="dark">
+          <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+            <th>Job Title</th>
+            <th>Department</th>
+            <th>Phone</th>
+          </tr>
+          </thead>
+          <tbody>        
+      {this.state.employees.map(employee => (
+            <EmployeeDetails
+              id={employee.id}
+              key={employee.id}
+              first_name={employee.first_name}
+              last_name={employee.last_name}
+              email={employee.email}
+              job_title={employee.job_title}
+              department={employee.department}
+              phone={employee.phone}/>
+              ))}
+          </tbody>
+        </Table>
       </>
 
     )
