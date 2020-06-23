@@ -7,7 +7,7 @@ const EmpJumbotron = () => {
         <Jumbotron fluid>
           <Container fluid>
             <h1 className="display-3">Employee Directory</h1>
-            <p className="lead">Fast and simple way to filter through employees</p>
+            <p className="lead">Filter by name and sort alphabetically</p>
           </Container>
         </Jumbotron>
       </div>
