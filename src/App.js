@@ -29,6 +29,7 @@ filterNames (inputValue) {
     employee.first_name ? employee.first_name.indexOf(inputValue) >=0 : null)
   this.setState({ filtered })
   console.log(filtered)
+  
 }
 
 
