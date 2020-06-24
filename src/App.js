@@ -26,7 +26,7 @@ handleInputChange = event => {
 filterNames (inputValue) {
   const { employees } = this.state
   let filtered = employees.filter(employee => 
-    employee.first_name ? employee.first_name.indexOf(inputValue) >=0 : null)
+    employee.first_name ? employee.first_name.indexOf(inputValue) >0 : null)
   this.setState({ filtered })
   console.log(filtered)
   
