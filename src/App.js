@@ -26,7 +26,7 @@ handleInputChange = event => {
 filterNames (inputValue) {
   const { employees } = this.state
   let filtered = employees.filter(employee => 
-    employee.first_name ? employee.first_name.includes(inputValue) : null)
+    employee.first_name ? employee.first_name.indexOf(inputValue) >=0 : null)
   this.setState({ filtered })
   console.log(filtered)
 }
@@ -38,9 +38,10 @@ filterNames (inputValue) {
 //   const employees = this.setState({ employees: employees.filter(emp => emp.name.indexOf(input) !== -1)})
 // }
 //handle sort
-handleSort = event => {
+handleSort = (event) => {
   event.preventDefault()
   employees.sort((a,b) => a.first_name < b.first_name ? -1 : 1)
+
   // event.preventDefault()
   // employees.sort(function(a,b){
   // return a.first_name < b.first_name ? -1:1
