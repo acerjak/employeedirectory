@@ -14,7 +14,6 @@ class App extends Component {
     filtered: employees,
     sort: true
   }
-
 //handle input change
 handleInputChange = event => {
   console.log(event.target.value)
@@ -22,7 +21,6 @@ handleInputChange = event => {
  // this.setState({ first_name: inputValue})
   this.filterNames(inputValue)
 }
-
 //handle filtering name
 filterNames (inputValue) {
   console.log("fil", inputValue)
@@ -31,39 +29,14 @@ filterNames (inputValue) {
    employee.first_name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) 
    console.log(filtered)
   this.setState({ first_name:inputValue, filtered })
-  
-  
 }
-
-
-//handle filter by name
-// handleFilter = event => {
-//   event.preventDefault()
-//   const employees = this.setState({ employees: employees.filter(emp => emp.name.indexOf(input) !== -1)})
-// }
 //handle sort
 handleSort = (event) => {
   event.preventDefault()
   console.log('ping', event.target)
   let empSorted = this.state.sort ? this.state.filtered.sort((a,b) => a.first_name < b.first_name ? -1 : 1) : this.state.filtered.sort((a,b) => a.first_name > b.first_name ? -1 : 1)
   this.setState({filtered:empSorted, sort: !this.state.sort })
-
-  // event.preventDefault()
-  // employees.sort(function(a,b){
-  // return a.first_name < b.first_name ? -1:1
-// })
 }
-
-
-  // handleFilter(e){
-  //   e.preventDefault()
-  //   let input = e.target.value
-  //   this.setState({
-  //     originalEmployees: employees.filter(emp => emp.name.indexOf(input) !== -1)
-  //   })
-    // filter original employees using the input updating employees
-
-  // }
 
   render(){
     return (
