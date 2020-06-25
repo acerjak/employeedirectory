@@ -11,24 +11,27 @@ class App extends Component {
   state = {
     first_name: '',
     employees,
-    filtered: []
+    filtered: employees,
+    sort: true
   }
 
 //handle input change
 handleInputChange = event => {
   console.log(event.target.value)
   const inputValue = event.target.value
-  this.setState({ first_name: inputValue})
+ // this.setState({ first_name: inputValue})
   this.filterNames(inputValue)
 }
 
 //handle filtering name
 filterNames (inputValue) {
+  console.log("fil", inputValue)
   const { employees } = this.state
   let filtered = employees.filter(employee => 
-    employee.first_name ? employee.first_name.indexOf(inputValue) >0 : null)
-  this.setState({ filtered })
-  console.log(filtered)
+   employee.first_name.toLowerCase().indexOf(inputValue.toLowerCase()) !== -1) 
+   console.log(filtered)
+  this.setState({ first_name:inputValue, filtered })
+  
   
 }
 
@@ -41,7 +44,9 @@ filterNames (inputValue) {
 //handle sort
 handleSort = (event) => {
   event.preventDefault()
-  employees.sort((a,b) => a.first_name < b.first_name ? -1 : 1)
+  console.log('ping', event.target)
+  let empSorted = this.state.sort ? this.state.filtered.sort((a,b) => a.first_name < b.first_name ? -1 : 1) : this.state.filtered.sort((a,b) => a.first_name > b.first_name ? -1 : 1)
+  this.setState({filtered:empSorted, sort: !this.state.sort })
 
   // event.preventDefault()
   // employees.sort(function(a,b){
@@ -80,8 +85,8 @@ handleSort = (event) => {
             <th>Phone</th>
           </tr>
         </thead>
-        <tbody>        
-        {this.state.filtered[0] ? this.state.filtered.map(employee => (
+        <tbody>  
+        {this.state.filtered.map(employee => (
           <EmployeeDetails
             id={employee.id}
             key={employee.id}
@@ -91,17 +96,7 @@ handleSort = (event) => {
             job_title={employee.job_title}
             department={employee.department}
             phone={employee.phone}/>
-        ))  : this.state.employees.map(employee => (
-          <EmployeeDetails
-            id={employee.id}
-            key={employee.id}
-            first_name={employee.first_name}
-            last_name={employee.last_name}
-            email={employee.email}
-            job_title={employee.job_title}
-            department={employee.department}
-            phone={employee.phone}/>
-          ))}
+        ))}      
         </tbody>
       </Table>
     </>
