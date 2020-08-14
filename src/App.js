@@ -37,7 +37,6 @@ handleSort = (event) => {
   let empSorted = this.state.sort ? this.state.filtered.sort((a,b) => a.first_name < b.first_name ? -1 : 1) : this.state.filtered.sort((a,b) => a.first_name > b.first_name ? -1 : 1)
   this.setState({filtered:empSorted, sort: !this.state.sort })
 }
-
   render(){
     return (
     <>
